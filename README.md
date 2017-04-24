@@ -18,7 +18,7 @@ In single page apps, the authentication/login flow looks something like this:
 
 ## Initial Setup
 
-You will want to copy over the work you did in the News Site V challenge into this repo - this time, you can copy and paste the entire `src` directory from the news-site-IV repo and paste it directly into this repo.
+You will want to copy over the work you did in the News Site V challenge into this repo - this time, you can copy and paste the entire `src` directory from the news-site-V repo and paste it directly into this repo.
 
 **After copying over your source directory, run `npm run update-app`.**  This command will update a few unit tests in your src/ directory.
 
