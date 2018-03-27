@@ -3,7 +3,7 @@
 ## High Level Objectives
 
  1. Wire up Login Page - when the login form is submitted, POST login credentials to the login API endpoint and store the access token that's returned in the response from the API in App.js' state.
- 2. Modify Nav.js to show a "Log In" link if a user isn't logged in, and a "Log Out" link if a user is logged in.
+ 2. Modify AppNav.js to show a "Log In" link if a user isn't logged in, and a "Log Out" link if a user is logged in.
  3. Only show the "Add An Article" link when a user is logged in, and include the user's access token to the now-protected Add Article API endpoint.
 
 ## Single Page App Authentication Overview
@@ -128,7 +128,7 @@ At this point, you should be able to successfully submit an article.  If you can
 
 ## AppNav.js 
 
-As users who aren't logged in are now unable to post articles, we should only have the "Add An Article" button appear in the Nav.js component when a user is logged in.  In order to accomplish this, you can simply pass in App.js's this.state.user into the Nav.js component and key off of that.  If this.state.user is null, you can assume the user isn't logged in.  If this.state.user isn't null, you can assume a user is logged in.  
+As users who aren't logged in are now unable to post articles, we should only have the "Add An Article" button appear in the AppNav.js component when a user is logged in.  In order to accomplish this, you can simply pass in App.js's this.state.user into the AppNav.js component and key off of that.  If this.state.user is null, you can assume the user isn't logged in.  If this.state.user isn't null, you can assume a user is logged in.  
 
 In addition to making the "Add An Article" button appear only when appropriate, let's add Log In and Log Out links to the navigation - and display the appropriate one in the appropriate situation.  
 
@@ -142,7 +142,7 @@ Again, you'll want to display these links when appropriate - if a user is logged
 
 If you completed the news-site-V challenge, you should already have a route for `/login`.  You won't have a route defined for `/logout`, though - we'll get to that.
 
-You should still be able to verify the functionality you just built.  Load up the app - verify that by default, the "Add An Article" link doesn't appear and the "Log In" link does.  Clicking the Log In link, you should be brought to pages/LoginPage.js.  Filling out the Login form with valid credentials, you should be redirected back to the Home Page - and Nav.js should update so that the "Add An Article" and the "Log Out" links should appear.
+You should still be able to verify the functionality you just built.  Load up the app - verify that by default, the "Add An Article" link doesn't appear and the "Log In" link does.  Clicking the Log In link, you should be brought to pages/LoginPage.js.  Filling out the Login form with valid credentials, you should be redirected back to the Home Page - and AppNav.js should update so that the "Add An Article" and the "Log Out" links should appear.
 
 ## A few last `<Routes />`
 
