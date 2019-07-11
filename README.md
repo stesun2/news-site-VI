@@ -2,19 +2,19 @@
 
 ## High Level Objectives
 
- 1. Wire up Login Page - when the login form is submitted, POST login credentials to the login API endpoint and store the access token that's returned in the response from the API in App.js' state.
- 2. Modify AppNav.js to show a "Log In" link if a user isn't logged in, and a "Log Out" link if a user is logged in.
- 3. Only show the "Add An Article" link when a user is logged in, and include the user's access token to the now-protected Add Article API endpoint.
+1. Wire up Login Page - when the login form is submitted, POST login credentials to the login API endpoint and store the access token that's returned in the response from the API in App.js' state.
+2. Modify AppNav.js to show a "Log In" link if a user isn't logged in, and a "Log Out" link if a user is logged in.
+3. Only show the "Add An Article" link when a user is logged in, and include the user's access token to the now-protected Add Article API endpoint.
 
 ## Single Page App Authentication Overview
 
 In single page apps, the authentication/login flow looks something like this:
 
- 1. User navigates to login page.  
- 2. After entering their credentials and hitting submit, the login credentials are sent to an API endpoint/web service
- 3. The API checks the credentials - if they're valid, an access token is returned.
- 4. Requests made to "protected" API endpoints require a user access token.  If a token is not included in a request to a protected endpoint or the token has expired, a 401 unauthorized response status code is returned.  If the token is valid, the requested resource is returned successfully (a 200 response).
- 5. When any API request is made with a valid token, the token's expiration is extended.  If the user is inactive for a certain period of time, the token will expire and the user will be asked to log in again.
+1. User navigates to login page.  
+2. After entering their credentials and hitting submit, the login credentials are sent to an API endpoint/web service
+3. The API checks the credentials - if they're valid, an access token is returned.
+4. Requests made to "protected" API endpoints require a user access token.  If a token is not included in a request to a protected endpoint or the token has expired, a 401 unauthorized response status code is returned.  If the token is valid, the requested resource is returned successfully (a 200 response).
+5. When any API request is made with a valid token, the token's expiration is extended.  If the user is inactive for a certain period of time, the token will expire and the user will be asked to log in again.
 
 ## Initial Setup
 
@@ -22,7 +22,7 @@ You will want to copy over the work you did in the News Site V challenge into th
 
 **After copying over your source directory, run `npm run update-app`.**  This command will update a few unit tests in your src/ directory.
 
-Once you've performed the steps above, run ```npm run start``` - verify that no errors appear in your browser console or terminal, and that your app functions the same as it did in the last challenge.  
+Once you've performed the steps above, run ```npm install ; npm run start``` - verify that no errors appear in your browser console or terminal, and that your app functions the same as it did in the last challenge.  
 
 ## UsersAPI.login()
 
@@ -30,14 +30,16 @@ So far, we've only utilized a single type of object/model from the API - the Art
 
 Inside this `UsersAPI.js` module, we should create a function: `UsersAPI.login(credentialsObject)`.  The login function accepts a parameter called `credentialObject` - the structure of the `credentialsObject` that this function should accept will look like this:
 
-    {
-      email: "john@doe.com",
-      password: "opensesame" // this is the password for the API today
-    }
+```js
+{
+  email: "john@doe.com",
+  password: "opensesame" // this is the password for the API today
+}
+```
 
 This function should create a request that's almost identical to the `ArticlesAPI.addArticle()` function.  
 
-When `UsersAPI.login()` is called, a POST request should be made to `http://localhost:3001/api/users/login?include=user` - the `credentialsObject` should be stringified and passed in the request body, and the content-type should be set to application/json.  The function should return a Fetch Promise (just as all of the functions we made in `ArticlesAPI`.js do).
+When `UsersAPI.login()` is called, a POST request should be made to `http://localhost:3001/api/users/login?include=user` - the `credentialsObject` should be stringified and passed in the request body, and the content-type should be set to application/json.  The function should return a Fetch Promise that we will resolve later.
 
 There is a unit test that verifies the expected behavior of UsersAPI.login() - once this test succeeds, you may proceed to the next section.
 
