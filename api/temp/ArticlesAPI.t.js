@@ -49,7 +49,7 @@ it('submits an article by calling ArticlesAPI.addArticle()', (done) => {
     .then((json) => {
       const requestBody = request._calls[0][1].body;
       expect(requestBody).toEqual(JSON.stringify(articleObject));
-      expect(json.success).toEqual(true);
+      expect(json.ok).toEqual(true);
       done();
     })
     .catch((err) => {
