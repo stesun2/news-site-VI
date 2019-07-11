@@ -10,7 +10,7 @@ it('calls ArticlesAPI.fetchArticleByID(1)', (done) => {
   fetchMock.get('http://localhost:3001/api/articles/1', {success: true});
   return ArticlesAPI.fetchArticleByID(1)
     .then((json) => {
-      expect(json.success).toEqual(true);
+      expect(json.ok).toEqual(true);
       done();
     })
     .catch((err) => {
@@ -22,7 +22,7 @@ it('calls ArticlesAPI.fetchArticles()', (done) => {
   fetchMock.get('http://localhost:3001/api/articles', {success: true});
   return ArticlesAPI.fetchArticles()
     .then((json) => {
-      expect(json.success).toEqual(true);
+      expect(json.ok).toEqual(true);
       done();
     })
     .catch((err) => {
@@ -34,7 +34,7 @@ it('calls ArticlesAPI.fetchArticlesBySection(\'opinion\')', (done) => {
   fetchMock.get('http://localhost:3001/api/articles?filter={"where":{"section":"opinion"}}', {success: true});
   return ArticlesAPI.fetchArticlesBySection('opinion')
     .then((json) => {
-      expect(json.success).toEqual(true);
+      expect(json.ok).toEqual(true);
       done();
     })
     .catch((err) => {

@@ -47,7 +47,7 @@ There is a unit test that verifies the expected behavior of UsersAPI.login() - o
 
 When valid credentials to the `api/users/login` endpoint are provided, the API response will look something like this:
 
-```
+```js
 {
   "id":"O2FbDOTQeamtD6Uoz2EkyPvekxbh9u6F99jt7GGzdyDdPZ3NzoJx4uIt0AG5ngJb",
   "ttl": 20,
@@ -68,7 +68,7 @@ In order to store the User object into App.js's state, you will need to (a) crea
 For Item `a` in the paragraph above, let's create a method called handleLogin:
 
 ```
-handleLogin(user) {
+handleLogin = (user) => {
   this.setState({
     user: user
   })
@@ -86,7 +86,7 @@ const renderLoginPage = (props) => {
   return (
     <LoginPage 
       history={props.history}
-      handleLogin={this.handleLogin.bind(this)} />
+      handleLogin={this.handleLogin} />
   )
 }
 
@@ -101,15 +101,14 @@ At this point, it is assumed that your `LoginPage.js` has a login form, and the 
 
 In your login form's `onSubmit` event handler, invoke `UsersAPI.login()` - of course, you will need to parse out the email and password fields from your form, store them into an object, and then pass the object to `UsersAPI.login()`.  In `UsersAPI.login().then` callback function, call the the function you passed into the LoginPage (e.g. `this.props.handleLogin(user)`) and pass in the response from the API. Also, redirect the page back to the home page (`this.props.history.push('/')`).
 
-## Authenticated Article Submission: ArticlesAPI.js
-
 Add a `console.log(this.state)` to `App.js`' render function temporarily to verify that the data from the API is making it's way from your `LoginPage.js` component back up to `App.js` - once you've confirmed this, you may move on to the next step.
 
+## Authenticated Article Submission: ArticlesAPI.js
 If you attempt to submit an article from your app in it's current state, you'll notice that the API will return a 401 Unauthorized status code. The version of the API included in this repo has protection around the `api/articles` POST route - in order to POST an article, you need to include a valid token in the request. 
 
 First, let's update `ArticlesAPI.addArticle()`. At the moment, this function accepts a single parameter - an Article object. Add an additional parameter for this function called `token`:
 
-```
+```js
 const addArticle = (articleObject, token)
 ```
 
@@ -120,7 +119,7 @@ There is a unit test that asserts this new behavior - once the `ArticlesAPI.js` 
 ## Authenticated Article Submission: AddArticlePage.js
 As we now need the user object (or specifically, the token) in order to submit an article, we need to provide this data to the `AddArticlePage.js` component.  
 
-In order to accomplish this, we will need to modify the add-article `<Route />` to use the `render` prop instead of the `component` prop, as we need to pass additional information into the `AddArticlePage` component.  Create a function similar the `renderLoginPage()` function detailed above. Let's name this new function `renderAddArticlePage` - for now, it should just return the `AddArticle` component with `this.state.user` passed into the component.  Let's pass in `this.state.user` through a prop called "user".  
+In order to accomplish this, we will need to modify the `add-article` `<Route />` to use the `render` prop instead of the `component` prop, as we need to pass additional information into the `AddArticlePage` component.  Create a function similar the `renderLoginPage()` function detailed above. Let's name this new function `renderAddArticlePage` - for now, it should just return the `AddArticle` component with `this.state.user` passed into the component.  Let's pass in `this.state.user` through a prop called "user".  
 
 Set this function to the value of the add-article `<Route />`: `<Route exact path="/add-article" render={renderAddArticlePage} />`
             
@@ -130,12 +129,12 @@ At this point, you should be able to successfully submit an article.  If you can
 
 ## AppNav.js 
 
-As users who aren't logged in are now unable to post articles, we should only have the "Add An Article" button appear in the AppNav.js component when a user is logged in.  In order to accomplish this, you can simply pass in App.js's this.state.user into the AppNav.js component and key off of that.  If this.state.user is null, you can assume the user isn't logged in.  If this.state.user isn't null, you can assume a user is logged in.  
+As users who aren't logged in are now unable to post articles, we should only have the "Add An Article" button appear in the AppNav.js component when a user is logged in.  In order to accomplish this, you can simply pass in App.js's `this.state.user` into the AppNav.js component and key off of that.  If this.state.user is null, you can assume the user isn't logged in.  If this.state.user isn't null, you can assume a user is logged in.  
 
 In addition to making the "Add An Article" button appear only when appropriate, let's add Log In and Log Out links to the navigation - and display the appropriate one in the appropriate situation.  
 
 For the Log In and Log Out links, you can use React Router's `<Link>` component.  Example:
-```
+```js
 <Link to="/login">Log In</Link>
 <Link to="/logout">Log Out</Link>
 ```
@@ -154,7 +153,7 @@ There are two last things we should do - we need to add a Route that handles log
 
 For the /logout route, we will create another `<Route />` that accepts a function via the `render` prop.  Let's call this function that we'll be passing into this route `renderLogout`.  Since the logic is simple enough, I'll just give you this function:
 
-```
+```js
 const renderLogout = (props) => {
   this.setState({user: null});
   return (
@@ -168,7 +167,7 @@ And the Route would look like this:
 <Route exact path="/logout" render={renderLogout} />
 ```
 
-Hitting http://localhost:3000/logout, this.state.user will be null'ed out and the page will redirect back to the homepage.
+Hitting http://localhost:3000/logout, `this.state.user` will be null'ed out and the page will redirect back to the homepage.
 
 The `<Redirect />` component - something that React Router provides - simply is used to redirect from one page to another.  Let's use this component again to achieve the following behavior:
 
