@@ -155,7 +155,7 @@ For the /logout route, we will create another `<Route />` that accepts a functio
 
 ```js
 const renderLogout = (props) => {
-  this.setState({user: null});
+  this.setState({user: null})
   return (
      <Redirect to="/login" />
   )
