@@ -31,9 +31,10 @@ So far, we've only utilized a single type of object/model from the API - the Art
 Inside this `UsersAPI.js` module, we should create a function: `UsersAPI.login(credentialsObject)`.  The login function accepts a parameter called `credentialObject` - the structure of the `credentialsObject` that this function should accept will look like this:
 
 ```js
+// this is the email & password to use for the API today
 {
   email: "john@doe.com",
-  password: "opensesame" // this is the password for the API today
+  password: "opensesame"
 }
 ```
 
