@@ -25,6 +25,7 @@
     "react-router-dom": "^4.3.1",
     "react-test-renderer": "^16.8.4",
     "react-test-utils": "0.0.1",
+    "reactstrap": "^8.5.1",
     "serve-favicon": "^2.5.0",
     "sinon": "^7.2.7",
     "strong-error-handler": "^3.2.0"
@@ -37,9 +38,15 @@
     "start-client": "react-scripts start ",
     "start-server": "node ./api",
     "enable-api-auth": "cp api/temp/article.json api/common/models/article.json",
-    "update-app": "cp api/temp/VI/ArticlesAPI.t.js src/api/ArticlesAPI.test.js && cp api/temp/VI/AppNav.t.js src/components/AppNav/AppNav.test.js && cp api/temp/VI/UsersAPI.js src/api/UsersAPI.js && cp api/temp/VI/UsersAPI.t.js src/api/UsersAPI.test.js",
+    "update-app": "cp api/temp/VI/ArticlesAPI.t.js src/api/ArticlesAPI.test.js && cp api/temp/VI/UsersAPI.js src/api/UsersAPI.js && cp api/temp/VI/UsersAPI.t.js src/api/UsersAPI.test.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
