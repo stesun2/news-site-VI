@@ -15,7 +15,7 @@ it('calls fetchArticleByID(1)', (done) => {
   fetchMock.get('http://localhost:3001/api/articles/1', {success: true});
   return fetchArticleByID(1)
     .then((json) => {
-      expect(json.ok).toEqual(true);
+      expect(json.success).toEqual(true);
       done();
     })
     .catch((err) => {
@@ -27,7 +27,7 @@ it('calls fetchArticles()', (done) => {
   fetchMock.get('http://localhost:3001/api/articles', {success: true});
   return fetchArticles()
     .then((json) => {
-      expect(json.ok).toEqual(true);
+      expect(json.success).toEqual(true);
       done();
     })
     .catch((err) => {
@@ -39,7 +39,7 @@ it('calls fetchArticlesBySection(\'opinion\')', (done) => {
   fetchMock.get('http://localhost:3001/api/articles?filter={"where":{"section":"opinion"}}', {success: true});
   return fetchArticlesBySection('opinion')
     .then((json) => {
-      expect(json.ok).toEqual(true);
+      expect(json.success).toEqual(true);
       done();
     })
     .catch((err) => {
