@@ -222,3 +222,5 @@ Hitting http://localhost:3000/logout, `this.state.user` will be null'ed out and 
 The `<Redirect />` component - something that React Router provides - simply is used to redirect from one page to another.  Let's use this component again to achieve the following behavior:
 
 If a user is not logged in and attempts to go to the /add-article route, they should be redirected to the login page.  If a user is logged in, the /add-article route should display the AddArticle Page.
+
+**Refactoring:** Once everything is working, go ahead and refeactor your `functional-version`. Getting some practice with the [useContext()](https://reactjs.org/docs/hooks-reference.html#usecontext) hook should be very handy.
