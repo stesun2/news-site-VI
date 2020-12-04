@@ -147,7 +147,7 @@ As we now need the user object (or specifically, the token) in order to submit a
 
 In order to accomplish this, we will need to import the `UserContext` into `AddArticlePage.js` and use the other React Component that `createContext` gives us: the [Consumer](https://reactjs.org/docs/context.html#contextconsumer). Let's look at some code and then walk through it:
 
-**Note:** The below code snippet is for a Class Based Component. Continue reading on how to use to pass the UserContext to a functional component. 
+**Note:** The below code snippet is for a Class Based Component. Look at using `contextType` to access the context throughout the Class Component. Continue reading on how to use to pass the UserContext to a functional component. 
 
 ```javascript
 import UserContext from '../contexts/UserContext';
