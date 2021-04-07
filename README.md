@@ -83,7 +83,7 @@ The context object that we just created and exported has two React components: a
 import UserContext from './contexts/UserContext.js';
 
 // in the render()
-<UserContext.Provider value={{ user: this.state.user, setUser: this.setUser }}>
+<UserContext.Provider value={{ user: this.state.user }}>
   <AppNav />
   // ... all of the routes
 </UserContext.Provider>
