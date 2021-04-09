@@ -12,17 +12,12 @@ var app = module.exports = loopback();
 
 app.middleware('initial', bodyParser.urlencoded({ extended: true }));
 
-// Bootstrap the application, configure models, datasources and middleware.
-
-boot(app, __dirname);
-
 app.set('view engine', 'ejs'); // LoopBack comes with EJS out-of-box
 app.set('json spaces', 2); // format json responses for easier viewing
 
 // must be set to serve views properly when starting the app via `slc run` from
 // the project root
 app.set('views', path.resolve(__dirname, 'views'));
-
 // app.use(loopback.token());
 // app.use(function(req, res, next) {
 //   var token = req.accessToken;
@@ -39,8 +34,10 @@ app.set('views', path.resolve(__dirname, 'views'));
 // });
 
 app.start = function() {
+  // retrieve port from config.json
+  const port = app.get('port');
   // start the web server
-  return app.listen(function() {
+  return app.listen(port, function() {
     app.emit('started');
     var baseUrl = app.get('url').replace(/\/$/, '');
     console.log('Web server listening at: %s', baseUrl);
@@ -51,8 +48,11 @@ app.start = function() {
   });
 };
 
-// start the server if `$ node server.js`
-if (require.main === module) {
-  app.start();
-}
+// Bootstrap the application, configure models, datasources and middleware.
+boot(app, __dirname, function(err) {
+  if (err) throw err;
 
+  // start the server if `$ node server.js`
+  if (require.main === module)
+    app.start();
+});
