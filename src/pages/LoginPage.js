@@ -1,12 +1,31 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import UsersAPI from '../api/UsersAPI';
 
 class LoginPage extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target.elements[0].value);
-    console.log(event.target.elements[1].value);
+
+    let emailValue = event.target.elements[0].value
+    let passwordValue = event.target.elements[1].value
+
+    console.log(emailValue);
+    console.log(passwordValue);
+
+    let creds = {
+      email: emailValue,
+      password: passwordValue
+    }
+
+    let userInfo = {
+      token: "",
+      username: "",
+      email: "",
+      userId: ""
+    }
+
+    UsersAPI.login(creds)
   };
 
   render() {
