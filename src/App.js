@@ -9,6 +9,9 @@ import ArticlePage from './pages/ArticlePage.js';
 import SectionPage from './pages/SectionPage.js';
 
 class App extends Component {
+  state = {
+    userInfo: null
+  }
   render() {
     return (
       <div>
@@ -16,8 +19,12 @@ class App extends Component {
           <div>
             <AppNav />
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/add-article" component={AddArticlePage} />
+            <Route exact path="/login">
+              <LoginPage setUserInfo={(info) => {this.setState({userInfo: info})}} />
+            </Route>
+            <Route exact path="/add-article">
+              <AddArticlePage userInfo={this.state.userInfo} />
+            </Route>
             <Route exact path="/articles/:articleID" component={ArticlePage} />
             <Route exact path="/sections/:sectionID" component={SectionPage} />
           </div>

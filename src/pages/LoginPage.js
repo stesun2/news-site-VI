@@ -15,17 +15,33 @@ class LoginPage extends Component {
 
     let creds = {
       email: emailValue,
-      password: passwordValue
+      password: passwordValue,
     }
 
     let userInfo = {
       token: "",
       username: "",
       email: "",
-      userId: ""
+      userId: "",
     }
 
-    UsersAPI.login(creds)
+    let responsePromise = UsersAPI.login(creds)
+    responsePromise
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+      })
+      .then((someData) => {
+        console.log(someData)
+        userInfo.token = someData.id
+        userInfo.username = someData.user.username
+        userInfo.email = someData.user.email
+        userInfo.userId = someData.user.id
+
+        console.log('My Data', userInfo)
+        this.props.setUserInfo(userInfo)
+      })
   };
 
   render() {

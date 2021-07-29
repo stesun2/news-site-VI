@@ -17,6 +17,12 @@ class AddArticlePage extends Component {
     }
 
     try {
+      let token = this.props.userInfo
+        ? this.props.userInfo.token
+        : "No token was found!"
+
+        alert(token)
+        
       const response = await addArticle(articleObject);
       if (response.status === 200) {
         // redirect the user back to Home Page upon successful POST

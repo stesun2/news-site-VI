@@ -8,14 +8,6 @@ const login = async (credentialsObject) => {
     method: "POST",
     body: JSON.stringify(credentialsObject)
   });
-  if (!response.ok) 
-    console.error('Not a valid response!')
-  else {
-    let data = await response.json()
-    console.log(data)
-  }
-
-  return 
 }
 
 export default {
